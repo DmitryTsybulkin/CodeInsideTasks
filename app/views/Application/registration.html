@@ -1,0 +1,34 @@
+#{extends 'main.html'/}
+#{set title:'Регистрация'/}
+
+<h1>Регистрация</h1>
+
+#{form @saveUser()}
+<p>* - обязательно</p>
+    #{field 'user.fullname'}
+         <p class="${field.errorClass}">
+             <strong>Ваще имя: </strong><input type="text" name="${field.name}" value="${user?.fullname}"> *
+             <span class="error">${field.error}</span>
+         </p>
+    #{/field}
+    #{field 'user.email'}
+         <p class="${field.errorClass}">
+             <strong>Ваш email: </strong><input type="email" name="${field.name}" value="${user?.email}"> *
+         </p>
+    #{/field}
+    #{field 'user.password'}
+         <p class="${field.errorClass}">
+             <strong>Ващ пароль: </strong><input type="password" name="${field.name}" value="${user?.password}"> *
+             <span class="error">${field.error}</span>
+         </p>
+    #{/field}
+    #{field 'user.verifyPassword'}
+          <p class="${field.errorClass}">
+              <strong>Подтвердите пароль: </strong><input type="password" name="${field.name}" value="${verifyPassword}"> *
+              <span class="error">${field.error}</span>
+          </p>
+    #{/field}
+    <p class="actions">
+        <input type="submit" value="Зарегестрироваться!">  <a href="@{index()}">Вернуться к авторизации</a>
+    </p>
+#{/form}

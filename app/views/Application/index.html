@@ -1,4 +1,31 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-<a href="@{Application.profile()}">Profile</a>
+<div id="login">
+
+    <p>Администратор: admin admin<br>
+    Пользователь: user user</p>
+
+#{form @login(), id:'loginForm'}
+    <p class="field">
+        <label>Логин:</label>
+        <input type="text" name="username" value="${flash.username}" />
+    </p>
+    <p class="field">
+        <label>Пароль:</label>
+        <input type="password" name="password"/>
+    </p>
+    <p class="button">
+        <input type="submit" value="Account login" />
+    </p>
+#{/form}
+
+    <p>
+        <a href="@{registration()}">Зарегестрироваться</a>
+    </p>
+
+</div>
+
+<script type="text/javascript" charset="${_response_encoding}">
+    sessvars.$.clearMem()
+</script>

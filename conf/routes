@@ -3,6 +3,9 @@
 
 # Home page
 GET     /                                       Application.index
+GET     /registration                           Application.registration
+POST    /registration                           Application.saveUser
+POST    /login                                  Application.login
 
 
 # Ignore favicon requests
@@ -14,4 +17,3 @@ GET     /public/                                staticDir:public
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
-

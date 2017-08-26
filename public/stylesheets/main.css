@@ -1,0 +1,76 @@
+html {
+    background: #b8d1e0;
+}
+
+body {
+    width: 900px;
+    margin: auto;
+    font-family: Arial;
+    font-size: 90%;
+    color: rgb(54, 47, 45);
+    background: #fff;
+    -webkit-border-radius: 8px;
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,.2);
+    -moz-border-radius: 8px;
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,.2);
+}
+
+a {
+    color: #666;
+}
+
+.fError, .fSuccess {
+    text-align: center;
+    position: relative;
+    top: -10px;
+}
+
+.fError {
+    color: #c00;
+}
+
+.fSuccess {
+    color: #0c0;
+}
+
+form p {
+    text-align: center;
+    height: 20px;
+}
+
+form p.field {
+    text-align: left;
+    margin: 0 0 5px 0;
+}
+
+form strong {
+    display: block;
+    width: 150px;
+    float: left;
+    text-align: right;
+    margin-right: 10px;
+    background: #eee;
+    padding: 2px;
+}
+
+form p {
+    clear: both;
+    text-align: left;
+    margin: 7px 0;
+    min-height: 15px;
+}
+
+form p.hasError {
+    color: #c00;
+}
+
+form .hasError .error {
+    font-size: 80%;
+}
+
+form .buttons {
+    text-align: left;
+    background: #dedede;
+    padding: 10px;
+    margin-top: 20px;
+}

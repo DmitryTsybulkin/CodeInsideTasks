@@ -1,0 +1,31 @@
+#There Will be test info, which Will get bootstrap class
+
+#Users
+
+models.User(admin):
+      email:     admin@mail.ru
+      password:  admin
+      fullname:  admin
+
+models.User(demo):
+      email:     demo@mail.ru
+      password:  demo
+      fullname:  User
+
+#Books
+
+models.Books(h1):
+      name:      Play framework cookbook
+      author:    Alexander Reelsen
+
+models.Books(h2):
+      name:      Горе от ума
+      author:    Грибоедов А.С.
+
+models.Books(h3):
+      name:      Java 8
+      author:    Г. Шилдт
+
+models.Books(h4):
+      name:      Архитектура компьютера
+      author:    Таненбаум Э.
