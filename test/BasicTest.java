@@ -6,9 +6,9 @@ public class BasicTest extends UnitTest {
 
     @Test
     public void createAndRetrieveUser() {
-        new User("bob@gmail.com", "secret", "Bob").save();
-        User bob = User.find("byEmail", "bob@gmail.com").first();
-        assertNotNull(bob);
-        assertEquals("Bob", bob.fullname);
+        new User("demo", "demo", "demo").save();
+        User user = User.findByUsername("demo");
+        assertNotNull(user);
+        assertEquals("demo", user.fullname);
     }
 }

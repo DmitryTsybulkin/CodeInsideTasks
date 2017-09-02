@@ -1,0 +1,30 @@
+
+#Users
+
+models.User(demo):
+    username: demo
+    hashpassword: demo
+    fullname: demo
+
+models.User(admin):
+    username: admin
+    hashpassword: admin
+    fullname: admin
+
+#Books
+
+models.Books(n1):
+    name: PlayFramework cookbook
+    author: Alexander Reelsen and Giancarlo Inductivo
+
+models.Books(n2):
+    name: Java 8
+    author: Шилдт Г.
+
+models.Books(n3):
+    name: Архитектура компьютера
+    author: Таненбаум Э.
+
+models.Books(n4):
+    name: Изучаем Java на примерах и задачах
+    author: Сеттер Р.В.

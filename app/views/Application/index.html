@@ -1,31 +1,24 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title:'login' /}
 
 <div id="login">
 
-    <p>Администратор: admin admin<br>
-    Пользователь: user user</p>
+    <p class="testinfo">Администратор: admin admin<br><br>
+      Пользователь: demo demo</p>
 
-#{form @login(), id:'loginForm'}
-    <p class="field">
-        <label>Логин:</label>
-        <input type="text" name="username" value="${flash.username}" />
-    </p>
-    <p class="field">
-        <label>Пароль:</label>
-        <input type="password" name="password"/>
-    </p>
-    <p class="button">
-        <input type="submit" value="Account login" />
-    </p>
-#{/form}
-
+    <form action = "@{Application.auth()}" id = "loginForm" method="post">
+        <p>
+            <label>LOGIN:</label>
+            <input type="text" id="username" name="username" value="${flash.username}" />
+        </p>
+        <p>
+            <label>PASSWORD:</label>
+            <input type="password" id="password" name="password" value="" />
+        </p>
+        <p class="action">
+            <input type="submit" value="Go!">
+        </p>
+    </form>
     <p>
         <a href="@{registration()}">Зарегестрироваться</a>
     </p>
-
-</div>
-
-<script type="text/javascript" charset="${_response_encoding}">
-    sessvars.$.clearMem()
-</script>

@@ -2,6 +2,7 @@ package models;
 
 /* Created by Dmitry on 22.08.2017 */
 
+import play.data.validation.Required;
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
@@ -11,7 +12,10 @@ import javax.persistence.Table;
 @Table
 public class Books extends Model {
 
+    @Required
     public String name;
+
+    @Required
     public String author;
 
     public Books(String name, String author) {
@@ -33,10 +37,5 @@ public class Books extends Model {
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    @Override
-    public Long getId() {
-        return super.getId();
     }
 }

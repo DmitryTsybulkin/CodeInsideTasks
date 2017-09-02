@@ -2,71 +2,70 @@ package controllers;
 
 import models.User;
 import play.data.validation.Valid;
+import play.data.validation.Validation;
 import play.mvc.Before;
 import play.mvc.Controller;
 
 public class Application extends Controller {
 
-    // Actions
+    // Actions with person
+    //-----------------------------------------
 
     @Before
-    static void addUser() {
-        User user = connected();
-        if (user != null) {
-            renderArgs.put("user", user);
-        }
-    }
 
-    static User connected() {
-        if (renderArgs.get("user") != null) {
-            return renderArgs.get("user", User.class);
-        }
-        String username = session.get("user");
-        if (username != null) {
-            return User.find("byUsername", username).first();
-        }
-        return null;
-    }
+
+    //-----------------------------------------
 
     public static void index() {
-        if (connected() != null) {
-            index();
-        }
         render();
     }
 
-    public static void profile() {
-        render();
+    public static void profileUser(Long id) {
+        User user = User.findById(id);
+        render(user);
     }
 
     public static void registration() {
         render();
     }
 
-    public static void saveUser(@Valid User user, String email, String verifyPassword) {
-        validation.required(verifyPassword);
-        validation.equals(verifyPassword, user.password).message("Ваш пароль некорректный!");
-        if (validation.hasErrors()) {
-            render("@registration", user, verifyPassword);
-        }
-        user.create();
-        session.put("user", user.fullname);
-        flash.success("Добро пожаловать, " + user.fullname);
-        profile();
+    public static void admin() {
+        render();
     }
 
-    public static void login(String email, String password) {
-        User user = User.find("byEmailAndPassword", email, password).first();
-        if(user != null) {
-            session.put("user", user.email);
-            flash.success("Welcome, " + user.fullname);
-            profile();
+    //-----------------------------------------
+
+    public static void auth(String username, String password) {
+        User user = User.findByUsername(username);
+        if (user == null || !user.checkPass(password)) {
+            flash.put("username", username);
+            flash.error("Bad username or password");
+            render("@index");
+        } else {
+            session.put("id", user.id);
+            session.put("username", user.username);
+            flash.success("Welcome %s !", username);
+            Actions.TableBooks();
         }
-        flash.put("email", email);
-        flash.error("Login failed");
+    }
+
+    public static void saveUser(@Valid User user, String ConfPass) {
+        validation.required(ConfPass).message("Обязательное поле*");
+        validation.required(user.hashpassword).message("Обязательное поле*");
+        validation.equals(ConfPass, user.hashpassword).message("Пароль должен быть более 4 и менее 20 символов");
+        if (Validation.hasErrors()) {
+            render("@registration", user, ConfPass);
+        }
+        user.save();
+        session.put("id", user.id);
+        session.put("user", user.username);
+        session.put("password", user.hashpassword);
+        flash.success("Добро пожаловать %s !", user.fullname);
+        Actions.TableBooks();
     }
 
     public static void logout() {
+        flash.success("Вы успешно вышли!");
         session.clear();
         index();
     }

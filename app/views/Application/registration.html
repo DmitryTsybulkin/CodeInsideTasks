@@ -3,32 +3,37 @@
 
 <h1>Регистрация</h1>
 
-#{form @saveUser()}
-<p>* - обязательно</p>
-    #{field 'user.fullname'}
-         <p class="${field.errorClass}">
-             <strong>Ваще имя: </strong><input type="text" name="${field.name}" value="${user?.fullname}"> *
-             <span class="error">${field.error}</span>
-         </p>
+<form action = "@{Application.saveUser()}" id="regitForm" method="post" >
+    #{field 'user.username'}
+    <p class="">
+        <label>Login:</label>
+        <input type="text" class="username" value="${user?.username}" />
+        <span class="error">${field.error}</span>
+    </p>
     #{/field}
-    #{field 'user.email'}
-         <p class="${field.errorClass}">
-             <strong>Ваш email: </strong><input type="email" name="${field.name}" value="${user?.email}"> *
-         </p>
+    #{field 'user.fullname'}
+    <p>
+        <label>Full name:</label>
+        <input type="text" class="fullname" value="${user?.fullname}" />
+        <span class="error">${field.error}</span>
+    </p>
     #{/field}
     #{field 'user.password'}
-         <p class="${field.errorClass}">
-             <strong>Ващ пароль: </strong><input type="password" name="${field.name}" value="${user?.password}"> *
-             <span class="error">${field.error}</span>
-         </p>
-    #{/field}
-    #{field 'user.verifyPassword'}
-          <p class="${field.errorClass}">
-              <strong>Подтвердите пароль: </strong><input type="password" name="${field.name}" value="${verifyPassword}"> *
-              <span class="error">${field.error}</span>
-          </p>
-    #{/field}
-    <p class="actions">
-        <input type="submit" value="Зарегестрироваться!">  <a href="@{index()}">Вернуться к авторизации</a>
+    <p>
+        <label>Password:</label>
+        <input type="password" class="password" value="${user?.hashpassword}" />
+        <span class="error">${field.error}</span>
     </p>
-#{/form}
+    #{/field}
+    #{field 'ConfPass'}
+    <p>
+        <label>Verify password:</label>
+        <input type="password" class="verifyPass" value="${ConfPass}" />
+        <span class="error">${field.error}</span>
+    </p>
+    #{/field}
+    <p class="back">
+        <input type="submit" value="Зарегестрироваться" />
+    </p>
+</form>
+<a href="@{Application.index()}">Back to login</a>

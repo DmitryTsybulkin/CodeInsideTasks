@@ -1,0 +1,34 @@
+#{extends 'main.html'/}
+#{set title:'Books' /}
+
+<a href="@{Application.logout()}">Выйти</a>
+
+#{ifnot books}
+<p>
+    Нет книг
+</p>
+#{/ifnot}
+#{else books, as:'books'}
+<table>
+    <thead>
+    <tr>
+        <th>Название</th>
+        <th>Автор</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    #{list books, as:'books'}
+    <tr>
+        <td>${books.name}</td>
+        <td>${books.author}</td>
+        <td>
+            <input type="button" id="add" value="Добавить себе" />
+            <input type="button" id="handOver" value="Сдать" />
+            <a href="@{Actions.readers()}">Кто читал?</a>
+        </td>
+    </tr>
+    #{/list}
+    </tbody>
+</table>
+#{/else}

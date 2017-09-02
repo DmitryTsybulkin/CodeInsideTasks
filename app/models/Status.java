@@ -12,7 +12,6 @@ import javax.persistence.Table;
 @Entity
 @Table
 public class Status extends Model {
-    public boolean Status;
 
     @OneToOne
     public User UserId;
@@ -20,9 +19,4 @@ public class Status extends Model {
     @OneToOne
     public Books BookId;
 
-    public void status() {
-        if (UserId != null && BookId != null) {
-            Status = true;
-        }
-    }
 }

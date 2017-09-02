@@ -2,15 +2,22 @@
 # This file defines all application routes (Higher
 
 # Home page
-GET     /                                       Application.index
-GET     /registration                           Application.registration
-POST    /registration                           Application.saveUser
-POST    /login                                  Application.login
+GET     /                                       controllers.Application.index
+POST    /                                       controllers.Application.auth
+GET     /registration                           controllers.Application.registration
+POST    /registration                           controllers.Application.saveUser
+GET     /logout                                 controllers.Application.logout
+GET     /profile/{id}                           controllers.Application.profileUser
+GET     /admin                                  controllers.Application.admin
 
-
-# Ignore favicon requests
-GET     /favicon.priority routes first)
-                 # ~~~~ico                            404
+# Users actions
+GET     /showbooks                              controllers.Actions.TableBooks
+GET     /showbooks/{id}/readers                 controllers.Actions.readers
+POST    /showbooks                              controllers.Actions.addBook
+POST    /showbooks                              controllers.Actions.deleteBook
+GET     /showusers                              controllers.Actions.TableUsers
+POST    /showusers                              controllers.Actions.addUser
+POST    /showusers                              controllers.Actions.deleteUser
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
